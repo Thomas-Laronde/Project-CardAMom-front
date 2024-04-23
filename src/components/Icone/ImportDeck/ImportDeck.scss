@@ -1,0 +1,43 @@
+.icone-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
+}
+
+.buttonIcone-import {
+  background-color: #feeaa1;
+  border-radius: 10px;
+  border: 0px;
+
+  width: 80px;
+  height: 80px;
+  box-shadow: 3px 3px 30px #18534f;
+}
+
+.fa-circle-down {
+  position: absolute;
+  margin-bottom: 10px;
+  color: #18534f;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
+}
+
+.modal {
+  text-align: center;
+}
+
+.button-modal {
+  background-color: #226d68;
+  color: white;
+}
+
+@media screen and (max-width: 1200px) {
+  .icone-import {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}

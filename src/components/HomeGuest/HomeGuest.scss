@@ -1,0 +1,15 @@
+.Welcome {
+  justify-content: center;
+  margin: auto;
+  align-items: auto;
+  display: flex;
+  text-align: center;
+  margin-top: 10%;
+  font-family: 'Love Ya Like A Sister';
+}
+@media screen and (max-width: 1200px) {
+  .Welcome {
+    margin: 30%;
+    text-align: center;
+  }
+}

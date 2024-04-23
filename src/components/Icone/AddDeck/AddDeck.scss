@@ -1,0 +1,53 @@
+.icone-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
+}
+
+.buttonIcone-add {
+  background-color: #feeaa1;
+  border-radius: 10px;
+  border: 0px;
+  width: 80px;
+  height: 80px;
+  box-shadow: 3px 3px 30px #18534f;
+}
+
+.fa-plus-square {
+  position: absolute;
+  margin-bottom: 10p;
+  color: #18534f;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-size: 4em;
+}
+
+.modal {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-modal {
+  background-color: #226d68;
+  color: white;
+
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .icone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .icone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
