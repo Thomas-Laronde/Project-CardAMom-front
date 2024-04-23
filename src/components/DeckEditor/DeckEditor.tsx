@@ -14,8 +14,6 @@ import {
   updateCard,
 } from '../../redux/Card/action';
 import Cookies from 'js-cookie';
-import { LuPencil } from 'react-icons/lu';
-import { ImCross } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import Card from '../Card/Card';
 
@@ -281,7 +279,9 @@ function DeckEditor() {
         ) : (
           isSameUserId && (
             <button className="creation-button" onClick={handleOpenModal}>
+              Crée ta
               <i className="fa-solid fa-square-plus" />
+              carte
             </button>
           )
         )}
@@ -297,32 +297,30 @@ function DeckEditor() {
           )}
 
         {!isCardUpdateModalOpen && (
-          <>
-            <div className="flashcards-container">
-              {deck.flashcards &&
-                deck.flashcards.map((card, index) => (
-                  <div key={index} className="flashcard">
-                    <Card recto={card.title_front} verso={card.title_back} />
-                    {isSameUserId && (
-                      <div className="button-deckEditor">
-                        <button
-                          className="button-card"
-                          onClick={() => handleCardDeleteModal(index)}
-                        >
-                          <i className="fas fa-times cross"></i>
-                        </button>
-                        <button
-                          className="button-card"
-                          onClick={() => handleCardUpdateModal(index)}
-                        >
-                          <i className="fa-solid fa-pen" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-            </div>
-          </>
+          <div className="flashcards-container">
+            {deck.flashcards &&
+              deck.flashcards.map((card, index) => (
+                <div key={index} className="flashcard">
+                  <Card recto={card.title_front} verso={card.title_back} />
+                  {isSameUserId && (
+                    <div className="button-card-container">
+                      <button
+                        className="button-card"
+                        onClick={() => handleCardDeleteModal(index)}
+                      >
+                        <i className="fas fa-times cross"></i>
+                      </button>
+                      <button
+                        className="button-card"
+                        onClick={() => handleCardUpdateModal(index)}
+                      >
+                        <i className="fa-solid fa-pen" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))}
+          </div>
         )}
 
         {isCardUpdateModalOpen && (

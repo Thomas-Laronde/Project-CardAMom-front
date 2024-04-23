@@ -2,7 +2,7 @@ import AppHeader from '../AppHeader/AppHeader';
 import SearchBar from '../SearchBar/SearchBar';
 import Icone from '../Icone/Icone';
 import Footer from '../Footer/Footer';
-import DeckList from '../DeckList/Deck';
+import DeckList from '../DeckList/DeckList';
 import HomeGuest from '../HomeGuest/HomeGuest';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';

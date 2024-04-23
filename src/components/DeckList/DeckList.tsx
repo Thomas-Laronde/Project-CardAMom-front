@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import { fetchDeck } from '../../redux/Deck/action';
 import { Deck } from '../../types';
-import './Deck.scss';
+import './DeckList.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useSelector } from 'react-redux';
 import Cookies from 'js-cookie';

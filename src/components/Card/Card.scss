@@ -4,8 +4,11 @@
   perspective: 1000px;
   transition: transform 0.8s;
   margin: 10vh auto;
-  border: 10px solid #d6955b;
+  border: 10px solid #226d68;
+
+  font-weight: bold;
   border-radius: 25px;
+  box-shadow: 10px 10px 10px black;
 }
 
 .card.flipped {
@@ -27,7 +30,7 @@
 }
 
 .card .recto {
-  background-color: #226d68;
+  background-color: #feeaa1;
 }
 
 .card .verso {
@@ -37,11 +40,12 @@
   justify-content: center;
   backface-visibility: hidden;
 }
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .card {
     width: 150px;
     height: 225px;
     margin: 5vh auto;
   }
+}
+@media screen and (max-width: 720px) {
 }

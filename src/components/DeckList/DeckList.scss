@@ -1,7 +1,6 @@
 .deck-button {
   display: flex;
   justify-content: center;
-
   padding: 70px 160px;
   background-color: #226d68;
   color: #fff;
@@ -23,26 +22,19 @@
   border: 0px;
   width: 38px;
   height: 38px;
+  color: #18534f;
   padding: 4px 4px;
   text-align: center;
   box-shadow: 1px 1px 20px #000000;
   position: absolute;
-  left: 50%;
+  left: 51%;
   z-index: 2;
   transform: translate(600%, -600%);
 }
-
-.fa-pen {
+.fa-solid {
+  position: sticky;
   color: #18534f;
-  font-size: 1.5rem;
 }
-
-.footer-list {
-  margin-top: 10vh;
-}
-/* .deck-card-title {
-  color: ;
-}  */
 
 @media screen and (max-width: 1400px) {
   .deck-button {
