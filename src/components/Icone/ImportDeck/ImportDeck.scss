@@ -21,10 +21,6 @@
   cursor: pointer;
 }
 
-.buttonIcone-import:active {
-  transform: translateY(20px);
-}
-
 .fa-circle-down {
   position: absolute;
   margin-bottom: 10px;
@@ -40,6 +36,12 @@
 .button-modal {
   background-color: #226d68;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-modal:hover {
+  background-color: #1e8f87;
 }
 
 @media screen and (max-width: 1200px) {

@@ -64,7 +64,7 @@ function ImportDeck() {
                   value={importCode}
                   onChange={importCodeHandleChange}
                 />
-                <button>Valider</button>
+                <button className="button-modal">Valider</button>
                 <button
                   className="button-modal"
                   type="button"
