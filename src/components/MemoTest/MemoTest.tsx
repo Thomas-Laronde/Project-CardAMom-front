@@ -19,7 +19,7 @@ function MemoTest() {
   const [know, setKnow] = useState(false);
   const [currentCardMemo, setCurrentCardMemo] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [finalResult, setFinalResult] = useState(1);
   const { id } = useParams();
 
   const handleRestartSession = () => {
@@ -67,6 +67,8 @@ function MemoTest() {
   const handleKnow = () => {
     setKnow(true);
     setCurrentCardMemo(currentCardMemo + 1);
+    setFinalResult(finalResult + 1);
+    console.log('resultat', finalResult);
   };
 
   const handleUnknow = () => {
