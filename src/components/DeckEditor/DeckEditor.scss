@@ -1,5 +1,4 @@
 .deck-editor {
-  font-family: 'Love Ya Like A Sister';
   position: relative;
 }
 .deck-title {
@@ -52,7 +51,7 @@
   position: absolute;
   display: flex;
   top: 20%;
-  right: 10%;
+  right: 12%;
   border-radius: 20px;
   background-color: #feeaa1;
 }
@@ -63,7 +62,7 @@
 }
 .button-card {
   background-color: #18534f;
-  margin: 2%;
+  margin: 3%;
   border: 0px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #050505;
@@ -89,8 +88,10 @@
   color: #feeaa1;
   font-size: 2rem;
 }
+
 .button-card > .fa-pen {
   color: #feeaa1;
+  font-size: 1.4rem;
 }
 
 .shareId {
@@ -116,18 +117,6 @@
   color: #18534f;
   font-size: 3.5rem;
 }
-.fa-pen {
-  color: #feeaa1;
-}
-
-.fa-pen-editor .card-update-modal {
-  position: relative;
-  transform: translateY(-50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
 .delete-button {
   background-color: #feeaa1;
@@ -138,7 +127,6 @@
   border-radius: 10px;
   width: 15%;
   height: 7%;
-  font-family: 'Love Ya Like A Sister';
   font-weight: bold;
   box-shadow: 1px 3px 10px black;
 }
