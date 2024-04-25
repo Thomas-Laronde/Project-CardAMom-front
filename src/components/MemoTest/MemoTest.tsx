@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from '../Card/Card';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AppHeader from '../AppHeader/AppHeader';
 import Footer from '../Footer/Footer';
 import './MemoTest.scss';
@@ -10,6 +10,7 @@ import { fetchCard } from '../../redux/Card/action';
 
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import HomeButton from '../HomeButton/HomeButton';
 
 function MemoTest() {
   const dispatch = useAppDispatch();
@@ -91,9 +92,7 @@ function MemoTest() {
     <main id="deck_page">
       <div className="memo-test">
         <AppHeader>
-          <Link to="/" className="return-button">
-            ACCUEIL
-          </Link>
+          <HomeButton />
         </AppHeader>
         <span className="deck-title">{currentDeck?.title}</span>
         {currentCard && (

@@ -1,6 +1,5 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import './LogIn.scss';
-
 import { IoIosCloseCircle } from 'react-icons/io';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
@@ -8,6 +7,7 @@ import { AppDispatch, RootState } from '../../../redux/store';
 import { loginAction } from '../../../redux/User/action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { Link } from 'react-router-dom';
+import Logo from '../../../assets/profile.png';
 
 function LogIn() {
   const [email, setEmail] = useState('');
@@ -52,7 +52,12 @@ function LogIn() {
     <div>
       {token ? (
         <h3 className="welcoming-message">
-          <Link to={`/profil/${user?.id}`}>Bienvenue {user?.pseudo}!</Link>
+          <Link to={`/profil/${user?.id}`}>
+            <span className="link-user-pseudo ">
+              Bienvenue {user?.pseudo} !{' '}
+            </span>
+            <img src={Logo} alt="Profile icon" className="user-icon" />
+          </Link>
         </h3>
       ) : (
         <>

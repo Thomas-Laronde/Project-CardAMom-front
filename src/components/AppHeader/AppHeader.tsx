@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import Logo from '../../assets/logo 4.svg';
 import { RootState } from '../../redux/store';
+import HomeButton from '../HomeButton/HomeButton';
 
 interface AppHeaderProps {
   children: React.ReactNode;
@@ -22,8 +23,7 @@ function AppHeader({ children }: AppHeaderProps) {
   );
   return (
     <header className="header">
-      <div className="header-content">{children}</div>
-      <img src={Logo} alt="Logo Cardamom" className="header-logo" />
+      <HomeButton />
       <h1>CardAMom</h1>
       <div>
         {displayModalLogIn ? (

@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import AppHeader from '../AppHeader/AppHeader';
 import Footer from '../Footer/Footer';
+import HomeButton from '../HomeButton/HomeButton';
 
 function Profile() {
   const user = useAppSelector((state) => state.user.user);
@@ -23,7 +24,7 @@ function Profile() {
   );
   //POur gérer la confirmation de changement par mot de passe
   const handleOpenModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
   const passwordCheckHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPasswordCheck(event.target.value);
@@ -50,7 +51,7 @@ function Profile() {
 
   const profileUpdate = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
+    setIsModalOpen(!isModalOpen);
     if (password != passwordConfirm) {
       toast.error('les mots de passes sont différents');
       return;
@@ -63,7 +64,6 @@ function Profile() {
         id: user?.id,
       })
     );
-    setIsModalOpen(false);
   };
 
   // Fonction pour supprimer son compte
@@ -79,76 +79,86 @@ function Profile() {
   //  const getStats
   // Une div qui contient le nom du user, boutons deconnecter, un bouttons pour supprimer son compte, un input pour modifier,
   return (
-    <main id="profil_page">
+    <main id="profil_page" className="profile_container">
       <AppHeader>
-        <Link to="/" className="return-button">
-          ACCUEIL
-        </Link>
+        <HomeButton />
       </AppHeader>
-      <section>
-        <input
-          type="text"
-          aria-label="userName"
-          placeholder={user?.pseudo}
-          value={pseudo}
-          onChange={profileHandleChange}
-        ></input>
-
-        <input
-          type="email"
-          aria-label="mailAdress"
-          placeholder={user?.email}
-          value={email}
-          onChange={emailHandleChange}
-        ></input>
-
-        <input
-          type="password"
-          aria-label="password"
-          placeholder="changer de mot de passe"
-          value={password}
-          onChange={passwordHandleChange}
-        ></input>
-
-        <input
-          type="password"
-          aria-label="passwordConfirm"
-          placeholder="confirmer le mot de passe"
-          value={passwordConfirm}
-          onChange={passwordConfirmHandleChange}
-        ></input>
-
-        <button
-          type="button"
-          className="button-validation"
-          onClick={handleOpenModal}
-        >
-          valider profil
-        </button>
-        {isModalOpen && (
+      <section className="profile-section">
+        {isModalOpen ? (
           <>
             <input
               type="password"
               aria-label="passwordConfirm"
-              placeholder="confirmer le mot de passe"
+              className="profile-password"
+              placeholder="Veuillez saisir votre mot de passe"
               value={passwordCheck}
               onChange={passwordCheckHandleChange}
             ></input>
             <button
               type="button"
-              className="valider"
+              className="profile-button"
               onClick={profileUpdate}
-            ></button>
+            >
+              Valider les changements
+            </button>
           </>
+        ) : (
+          <section className="profile-section">
+            <input
+              type="text"
+              aria-label="userName"
+              className="profile-input"
+              placeholder={user?.pseudo}
+              value={pseudo}
+              onChange={profileHandleChange}
+            ></input>
+
+            <input
+              type="email"
+              aria-label="mailAdress"
+              className="profile-input"
+              placeholder={user?.email}
+              value={email}
+              onChange={emailHandleChange}
+            ></input>
+
+            <input
+              type="password"
+              aria-label="password"
+              className="profile-input"
+              placeholder="changer de mot de passe"
+              value={password}
+              onChange={passwordHandleChange}
+            ></input>
+
+            <input
+              type="password"
+              aria-label="passwordConfirm"
+              className="profile-input"
+              placeholder="confirmer le mot de passe"
+              value={passwordConfirm}
+              onChange={passwordConfirmHandleChange}
+            ></input>
+
+            <button
+              type="button"
+              className="profile-button"
+              onClick={handleOpenModal}
+            >
+              valider profil
+            </button>
+            <button type="button" className="profile-button">
+              Supprimer le compte
+            </button>
+            <button
+              type="button"
+              className="profile-button"
+              onClick={handleDisconnect}
+            >
+              Déconnexion
+            </button>
+          </section>
         )}
-        <button type="button" className="button-delete"></button>
-        <button
-          type="button"
-          className="authentification-button"
-          onClick={handleDisconnect}
-        >
-          Déconnexion
-        </button>
       </section>
       <section>
         <span>Affichage stats</span>

@@ -136,7 +136,7 @@
   left: 1%;
   border: solid 2px;
   border-radius: 10px;
-  width: 15%;
+  width: 17%;
   height: 7%;
   font-family: 'Love Ya Like A Sister';
   font-weight: bold;
@@ -154,17 +154,17 @@
   .creation-button {
     font-size: 1rem; /* Ajout de marge entre le texte et l'icône */
   }
+  .delete-button {
+    top: 30%;
+  }
 }
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
   .creation-button {
     width: 85px;
     height: 130px;
   }
   .delete-button {
+    top: 30%;
     font-size: 0.8rem;
-  }
-  .return-button {
-    position: absolute;
-    top: 1%;
   }
 }

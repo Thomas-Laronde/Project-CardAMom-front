@@ -1,0 +1,21 @@
+.return-button {
+  display: flex;
+  background-color: #feeaa1;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: solid 3px black;
+  border-radius: 25%;
+  margin: auto;
+}
+.return-icone {
+  width: 70%; /* Changer la largeur de l'icône selon vos besoins */
+  height: 70%;
+}
+@media screen and (max-width: 768px) {
+  .return-button {
+    width: 70px;
+    height: 70px;
+  }
+}

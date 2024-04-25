@@ -13,7 +13,7 @@ import {
   updateDeck,
   updateCard,
 } from '../../redux/Card/action';
-import Cookies from 'js-cookie';
+import HomeButton from '../HomeButton/HomeButton';
 import { toast } from 'react-toastify';
 import Card from '../Card/Card';
 
@@ -194,9 +194,7 @@ function DeckEditor() {
     <main id="deck_page">
       <div className="deck-editor">
         <AppHeader>
-          <Link to="/" className="return-button">
-            ACCUEIL
-          </Link>
+          <HomeButton />
         </AppHeader>
         <span className="deck-title-top">{deck.title}</span>
 
