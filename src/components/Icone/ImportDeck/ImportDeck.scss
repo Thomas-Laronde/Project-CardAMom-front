@@ -10,10 +10,19 @@
   background-color: #feeaa1;
   border-radius: 10px;
   border: 0px;
-
   width: 80px;
   height: 80px;
   box-shadow: 3px 3px 10px black;
+  transition: all 0.2s ease;
+}
+
+.buttonIcone-import:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.buttonIcone-import:active {
+  transform: translateY(20px);
 }
 
 .fa-circle-down {

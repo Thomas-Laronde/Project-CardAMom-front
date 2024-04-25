@@ -13,6 +13,11 @@
   position: relative;
   box-shadow: 5px 5px 10px black;
   z-index: 1;
+  transition: background-color 0.2s ease;
+}
+
+.deck-button:hover {
+  background-color: #1e8f87;
 }
 
 .modif-button {
@@ -29,6 +34,11 @@
   left: 51%;
   z-index: 2;
   transform: translate(600%, -600%);
+  transition: background-color 0.2s ease;
+}
+
+.modif-button:hover {
+  background-color: #bba865;
 }
 .fa-pen {
   font-size: 1.4rem;

@@ -27,9 +27,17 @@
   border: 3px solid #226d68;
   box-shadow: 3px 3px 10px black;
 }
+
 .deck-title-modif .fa-pen {
   color: #feeaa1;
 }
+
+.deck-title-modif:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .deck-title-top {
   display: flex;
   align-items: center;
@@ -84,6 +92,13 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.creation-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
 .cross {
   color: #feeaa1;
   font-size: 2rem;
@@ -92,6 +107,12 @@
 .button-card > .fa-pen {
   color: #feeaa1;
   font-size: 1.4rem;
+}
+
+.button-card:hover {
+  cursor: pointer;
+  background-color: #1e8f87;
+  transition: all 0.2s ease;
 }
 
 .shareId {
@@ -129,6 +150,12 @@
   height: 7%;
   font-weight: bold;
   box-shadow: 1px 3px 10px black;
+  transition: background-color 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #bba865;
+  cursor: pointer;
 }
 @media screen and (max-width: 900px) {
   .creation-button {

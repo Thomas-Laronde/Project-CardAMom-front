@@ -13,6 +13,13 @@
   background-color: #feeaa1;
   border-radius: 10px;
   margin-top: -25px;
+  transition: all 0.1s ease;
+}
+
+.buttonMemo:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #f0d57c;
 }
 
 .modal-content-memo {
@@ -36,6 +43,11 @@
   margin-top: 5px;
   color: black;
   padding: 8px;
+  cursor: pointer;
+}
+
+.square-memo:hover {
+  background-color: #f0d57c;
 }
 
 .square-memo + .square-memo {
