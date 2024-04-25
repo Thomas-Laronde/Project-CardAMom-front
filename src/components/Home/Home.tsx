@@ -13,7 +13,7 @@ function Home() {
     setSearch(searchValue);
   };
   const isConnected = useSelector((store: RootState) => store.user.isConnected);
-  console.log(isConnected, 'home');
+
   return (
     <>
       {isConnected && (

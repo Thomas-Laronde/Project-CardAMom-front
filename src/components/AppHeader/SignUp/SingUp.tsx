@@ -57,7 +57,6 @@ function SignUp() {
         email,
         password,
         pseudo,
-        token: '',
         id: 0,
       })
     );

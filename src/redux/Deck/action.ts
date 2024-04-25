@@ -1,4 +1,5 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 type DeckActionPayload = {
   title: string;
@@ -6,29 +7,25 @@ type DeckActionPayload = {
   user_id?: number;
   shareId?: number;
   updated_at?: string;
-  token: string | undefined;
 };
 
-export const fetchDeck = createAsyncThunk(
-  'decks/FETCH_DECK',
-  async (payload: DeckActionPayload) => {
-    const { token } = payload;
-    const response = await fetch(`http://localhost:3003/api/decks`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const parsedResponse = await response.json();
-    return parsedResponse;
-  }
-);
+export const fetchDeck = createAsyncThunk('decks/FETCH_DECK', async () => {
+  const token = Cookies.get('jwtToken');
+  const response = await fetch(`http://localhost:3003/api/decks`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const parsedResponse = await response.json();
+  return parsedResponse;
+});
 
 export const deckCreate = createAsyncThunk(
   'deck/CREATE',
   async (payload: DeckActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
     try {
       const response = await fetch(`http://localhost:3003/api/decks`, {
         method: 'POST',
@@ -50,7 +47,8 @@ export const deckCreate = createAsyncThunk(
 export const deleteDeck = createAsyncThunk(
   'deck/DELETE',
   async (payload: DeckActionPayload) => {
-    const { token, id } = payload;
+    const token = Cookies.get('jwtToken');
+    const { id } = payload;
     const response = await fetch(`http://localhost:3003/api/decks/${id}`, {
       method: 'DELETE',
       headers: {
@@ -68,8 +66,8 @@ export const updateDeckTitle = createAction('deck/UPDATETITLE');
 export const fetchImportDeck = createAsyncThunk(
   'deck/FETCH_IMPORT_DECK',
   async (payload: DeckActionPayload) => {
-    const { shareId, token } = payload;
-
+    const { shareId } = payload;
+    const token = Cookies.get('jwtToken');
     const response = await fetch(
       `http://localhost:3003/api/decks/share/${shareId}`,
       {
@@ -82,7 +80,7 @@ export const fetchImportDeck = createAsyncThunk(
     );
 
     const parsedResponse = await response.json();
-    console.log(parsedResponse, 'parsed response');
+
     return parsedResponse;
   }
 );

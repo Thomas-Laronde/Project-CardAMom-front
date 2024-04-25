@@ -9,24 +9,23 @@ export type UserState = {
   isPending: boolean;
   user?: UserData;
 };
-export interface UserData {
+export type UserData = {
   id: number;
   password: string;
   email: string;
   pseudo: string;
-  token: string;
-}
+};
 
-export interface Deck {
+export type Deck = {
   id: number;
   title: string;
   share_id: string;
   flashcards?: [Card];
   user_id: number;
-}
-export interface Card {
+};
+export type Card = {
   id: number;
   title_front: string;
   title_back: string;
   deck_id: number;
-}
+};

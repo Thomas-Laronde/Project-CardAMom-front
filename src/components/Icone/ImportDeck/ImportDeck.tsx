@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import Cookies from 'js-cookie';
+import { useAppDispatch } from '../../../hooks/redux';
 import { toast } from 'react-toastify';
 import './ImportDeck.scss';
 import { fetchImportDeck } from '../../../redux/Deck/action';
@@ -8,7 +7,7 @@ import { fetchImportDeck } from '../../../redux/Deck/action';
 function ImportDeck() {
   const dispatch = useAppDispatch();
   const [importCode, setImportCode] = useState('');
-  const token = Cookies.get('jwtToken');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -25,11 +24,7 @@ function ImportDeck() {
 
   const handleShareDeck = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(token, 'token envoyé');
-    if (!token) {
-      console.error('Token JWT non trouvé');
-      return;
-    }
+
     if (importCode === '') {
       alert('veuillez entrer un code');
       return;
@@ -37,7 +32,6 @@ function ImportDeck() {
     const shareId = parseInt(importCode);
     dispatch(
       fetchImportDeck({
-        token,
         shareId,
         title: '',
         id: undefined,

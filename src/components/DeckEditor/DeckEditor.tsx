@@ -31,7 +31,7 @@ function DeckEditor() {
   const [titleFront, setTitleFrontData] = useState('');
   const [titleBack, setTitleBackData] = useState('');
   const [titleDeck, setDeckTitle] = useState('');
-  const token = Cookies.get('jwtToken');
+
   const [isClickDeck, setIsClickDeck] = useState(false);
   const navigate = useNavigate();
   const isSameUserId = useAppSelector(
@@ -44,7 +44,6 @@ function DeckEditor() {
     if (id) {
       dispatch(
         fetchCard({
-          token,
           deck_id: deckId,
           title_front: '',
           title_back: '',
@@ -52,7 +51,7 @@ function DeckEditor() {
         })
       );
     }
-  }, [token, id]);
+  }, [id]);
 
   useEffect(() => {
     dispatch({ type: 'deck/UPDATETITLE', payload: deck });
@@ -101,7 +100,6 @@ function DeckEditor() {
     dispatch(
       cardCreate({
         title_front: titleFront,
-        token,
         title_back: titleBack,
         deck_id: deckId,
         id: undefined,
@@ -121,7 +119,6 @@ function DeckEditor() {
       dispatch(
         deleteCard({
           id: card?.id,
-          token,
           title_back: titleBack,
           title_front: titleFront,
           deck_id: deckId,
@@ -131,7 +128,6 @@ function DeckEditor() {
     if (isClickDeck) {
       dispatch(
         deleteDeck({
-          token,
           id: deckId,
           title: '',
         })
@@ -162,7 +158,7 @@ function DeckEditor() {
     }
     setDeckTitle('');
     handleCloseDeckModal();
-    dispatch(updateDeck({ token, id: deckId, title: titleDeck }));
+    dispatch(updateDeck({ id: deckId, title: titleDeck }));
     toast.success('Le titre a bien été modifié');
   };
   //Fonction pour modifier une carte
@@ -181,7 +177,6 @@ function DeckEditor() {
     const cardId = deck?.flashcards?.[currentIndex].id;
     dispatch(
       updateCard({
-        token,
         id: cardId,
         title_back: titleBack,
         title_front: titleFront,

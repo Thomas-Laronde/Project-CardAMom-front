@@ -1,7 +1,7 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 type CardActionPayload = {
-  token: string | undefined;
   title_front: string;
   title_back: string;
   deck_id: number;
@@ -11,7 +11,7 @@ type CardActionPayload = {
 export const fetchCard = createAsyncThunk(
   'cards/FETCH_CARDS',
   async (payload: CardActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
     const id = payload.deck_id;
     console.log("l'id dans fecthcard est:", id);
     const response = await fetch(`http://localhost:3003/api/decks/${id}`, {
@@ -31,7 +31,7 @@ export const fetchCard = createAsyncThunk(
 export const cardCreate = createAsyncThunk(
   'cards/CREATE',
   async (payload: CardActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
     try {
       const response = await fetch(`http://localhost:3003/api/flashcards`, {
         method: 'POST',
@@ -52,7 +52,7 @@ export const cardCreate = createAsyncThunk(
 export const deleteCard = createAsyncThunk(
   'cards/DELETE',
   async (payload: CardActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
 
     const { id } = payload;
     console.log(id, "l'id de la carte du payload");
@@ -88,7 +88,7 @@ export const updateDeck = createAsyncThunk(
 export const updateCard = createAsyncThunk(
   'card/PATCH',
   async (payload: CardActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
     const { id } = payload;
     const response = await fetch(`http://localhost:3003/api/flashcards/${id}`, {
       method: 'PATCH',

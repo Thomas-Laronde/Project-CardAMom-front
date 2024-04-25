@@ -7,14 +7,14 @@ import './MemoTest.scss';
 import { Deck } from '../../types/index';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { fetchCard } from '../../redux/Card/action';
-import Cookies from 'js-cookie';
+
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 function MemoTest() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const token = Cookies.get('jwtToken');
+
   const flashcards = useAppSelector((state) => state.deck.deck?.flashcards);
   const [know, setKnow] = useState(false);
   const [currentCardMemo, setCurrentCardMemo] = useState(0);
@@ -41,18 +41,17 @@ function MemoTest() {
   };
 
   useEffect(() => {
-    if (id && token) {
+    if (id) {
       dispatch(
         fetchCard({
           deck_id: parseInt(id),
           title_front: '',
           title_back: '',
           id: 0,
-          token,
         })
       );
     }
-  }, [id, token]);
+  }, [id]);
 
   useEffect(() => {
     if (

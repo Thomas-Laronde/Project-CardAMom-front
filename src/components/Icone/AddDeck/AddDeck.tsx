@@ -1,17 +1,15 @@
 import { ChangeEvent, useState } from 'react';
 import { deckCreate } from '../../../redux/Deck/action';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './AddDeck.scss';
-import { ImCross } from 'react-icons/im';
 
 function AddDeck() {
   const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setDeckTitle] = useState('');
-  const token = Cookies.get('jwtToken');
+
   const navigate = useNavigate();
 
   const handleOpenModal = () => {
@@ -29,7 +27,6 @@ function AddDeck() {
     setDeckTitle('');
     const response = await dispatch(
       deckCreate({
-        token,
         title,
         id: undefined,
       })

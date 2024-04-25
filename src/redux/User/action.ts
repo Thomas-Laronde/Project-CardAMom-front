@@ -4,11 +4,11 @@ import { toast } from 'react-toastify';
 
 type LoginActionPayload = {
   id: number | undefined;
-  email: string;
+  email: string | undefined;
   password: string;
   pseudo: string | undefined;
-  token: string | undefined;
 };
+
 // Action pour se connecter
 export const loginAction = createAsyncThunk(
   'auth/LOGIN',
@@ -39,7 +39,8 @@ export const tokenLoginAction = createAsyncThunk(
   'auth/PROFILE',
   // J'envoie les informations saisies dans le formulaire de connection à l'API grâce au payload
   async (payload: LoginActionPayload) => {
-    const { token } = payload;
+    const token = Cookies.get('jwtToken');
+
     // message d'erreur si pas de token
     if (!token) {
       throw new Error('No token available');
@@ -69,6 +70,25 @@ export const tokenLoginAction = createAsyncThunk(
     }
   }
 );
+//Action mettre à jour le user
+export const updateUser = createAsyncThunk(
+  'auth/PATCH',
+  async (payload: LoginActionPayload) => {
+    const token = Cookies.get('jwtToken');
+    console.log(token, 'le token');
+    const response = await fetch(`http://localhost:3003/api/profile`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    const profileUpdated = await response.json();
+    return profileUpdated;
+  }
+);
+
 // Action pour se déconnecter
 export const disconnectAction = createAction('auth/DISCONNECT');
 
@@ -96,4 +116,5 @@ export default {
   disconnectAction,
   signUpAction,
   tokenLoginAction,
+  updateUser,
 };

@@ -20,13 +20,7 @@ function DeckList({ search }: { search: string }) {
   useEffect(() => {
     if (token) {
       console.log('le useffect pour récupérer les decks se lance');
-      dispatch(
-        fetchDeck({
-          token,
-          title: '',
-          id: undefined,
-        })
-      );
+      dispatch(fetchDeck());
     }
   }, []);
 

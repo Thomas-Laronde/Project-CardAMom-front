@@ -12,7 +12,6 @@ const initialState: UserState = {
     email: '',
     password: '',
     pseudo: '',
-    token: '',
   },
 };
 
@@ -24,22 +23,20 @@ const userReducer = createReducer(initialState, (builder) => {
       console.info('Connexion en cours...');
       state.isPending = true;
     })
-    // si authentification avec le token réussi
+    // Si authentification avec le token réussi
     .addCase(actions.tokenLoginAction.fulfilled, (state, action) => {
       state.isPending = false;
       state.isConnected = true;
       state.user = action.payload.user;
     })
 
-    // authentification rejetée avec token
-
-    //si authentification est réussie
+    // Si authentification est réussie
     .addCase(actions.loginAction.fulfilled, (state, action) => {
       state.isPending = false;
       state.isConnected = true;
       state.user = action.payload.user;
     })
-    //si authentifiaction a échoué
+    // Si authentifiaction a échoué
     .addCase(actions.loginAction.rejected, (state, action) => {
       state.isPending = false;
       state.isConnected = false;
@@ -56,6 +53,14 @@ const userReducer = createReducer(initialState, (builder) => {
     //Si inscription ne réussie pas
     .addCase(actions.signUpAction.rejected, (state, action) => {
       state.isRegistered = false;
+      state.errorMessage = action.error.message || `erreur d'inscription`;
+    })
+    // Si l'update réussie
+    .addCase(actions.updateUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    })
+    // SI l'update ne réussie pas
+    .addCase(actions.updateUser.rejected, (state, action) => {
       state.errorMessage = action.error.message || `erreur d'inscription`;
     });
 });
