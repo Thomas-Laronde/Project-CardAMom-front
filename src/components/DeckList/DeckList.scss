@@ -12,6 +12,7 @@
   max-width: 600px;
   position: relative;
   box-shadow: 5px 5px 10px black;
+  border: 10px solid #ecf8f6;
   z-index: 1;
   transition: background-color 0.1s ease;
 }
@@ -19,7 +20,20 @@
 .deck-button:hover {
   background-color: #1e8f87;
 }
-
+.deck-pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 9%;
+  background-color: #18534f;
+  font-size: 1.5rem;
+  color: #fff;
+  width: 90%;
+  border: 10px solid #ecf8f6;
+  border-radius: 20px;
+  padding: 2%;
+}
 .modif-button {
   background-color: #feeaa1;
   border-radius: 20px;
@@ -31,7 +45,7 @@
   text-align: center;
   box-shadow: 1px 1px 20px #000000;
   position: absolute;
-  left: 51%;
+  left: 49%;
   z-index: 2;
   transform: translate(600%, -600%);
   transition: background-color 0.2s ease;
@@ -57,5 +71,16 @@
 
   .modif-button {
     transform: translate(350%, -460%);
+  }
+}
+@media screen and (max-width: 768px) {
+  .deck-button {
+    padding: 40px 60px;
+    font-size: 16px;
+    max-width: 380px;
+    min-width: 280px;
+
+    display: flex;
+    justify-content: center;
   }
 }

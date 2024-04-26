@@ -32,7 +32,7 @@ function DeckList({ search }: { search: string }) {
   return (
     <div className="deck-container">
       {isPending ? (
-        <div>Loading...</div>
+        <div className="deck-pending">Loading...</div>
       ) : (
         <div>
           {list.map((deck: Deck) => {
