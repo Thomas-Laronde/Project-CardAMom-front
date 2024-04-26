@@ -77,20 +77,24 @@ function LogIn() {
               <button id="closeButton" onClick={handleDialogDisplay}>
                 <IoIosCloseCircle className="react_icon" />
               </button>
-              <form onSubmit={handleConnect}>
+              <form className="form-container-login" onSubmit={handleConnect}>
                 <input
+                  className="input-login"
                   type="email"
                   value={email}
                   onChange={emailHandleChange}
                   placeholder="Email"
                 />
                 <input
+                  className="input-login"
                   type="password"
                   value={password}
                   onChange={passwordHandleChange}
                   placeholder="Mot de passe"
                 />
-                <button type="submit">Envoyer</button>
+                <button className="valid-button" type="submit">
+                  Envoyer
+                </button>
               </form>
             </div>
           ) : (

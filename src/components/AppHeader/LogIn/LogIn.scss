@@ -1,3 +1,30 @@
 .welcoming-message {
   color: #ecf8f6;
 }
+
+.valid-button {
+  background-color: #feeaa1;
+  border-radius: 10px;
+  transition: background-color 0.1s ease;
+  margin-top: 2%;
+  width: 90%;
+}
+
+.valid-button:hover {
+  background-color: #bba865;
+}
+
+.input-login {
+  display: flex;
+  margin-right: 30%;
+  width: 120%;
+}
+
+.form-container-login {
+  margin-right: 40px;
+}
+
+.Settings {
+  margin-right: 10px;
+  display: flex;
+}

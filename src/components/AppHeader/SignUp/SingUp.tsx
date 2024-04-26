@@ -85,32 +85,38 @@ function SignUp() {
               <button id="closeButton" onClick={handleDialogDisplay}>
                 <IoIosCloseCircle className="react_icon" />
               </button>
-              <form onSubmit={handlePasswordCheck}>
+              <form className="form-container" onSubmit={handlePasswordCheck}>
                 <input
+                  className="input-signup"
                   type="text"
                   value={pseudo}
                   onChange={pseudoHandleChange}
                   placeholder="Pseudo"
                 />
                 <input
+                  className="input-signup"
                   type="email"
                   value={email}
                   onChange={emailHandleChange}
                   placeholder="Email"
                 />
                 <input
+                  className="input-signup"
                   type="password"
                   value={password}
                   onChange={passwordHandleChange}
                   placeholder="Mot de passe"
                 />
                 <input
+                  className="input-signup"
                   type="password"
                   value={newPassword}
                   onChange={newPasswordHandleChange}
                   placeholder="Confirmer le mot de passe"
                 />
-                <button type="submit">Créer un compte</button>
+                <button className="valid-button-signup" type="submit">
+                  Créer un compte
+                </button>
               </form>
             </div>
           ) : (
