@@ -2,13 +2,13 @@ import React, { ChangeEvent, useState } from 'react';
 import './Profile.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { updateUser } from '../../redux/User/action';
+import { deleteUser, updateUser } from '../../redux/User/action';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom';
 import AppHeader from '../AppHeader/AppHeader';
 import Footer from '../Footer/Footer';
 import HomeButton from '../HomeButton/HomeButton';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const user = useAppSelector((state) => state.user.user);
@@ -19,10 +19,12 @@ function Profile() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const dispatch: AppDispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const navigate = useNavigate();
   const isConnected = useAppSelector(
     (store: RootState) => store.user.isConnected
   );
-  //POur gérer la confirmation de changement par mot de passe
+  //Pour gérer la confirmation de changement par mot de passe
   const handleOpenModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -67,6 +69,15 @@ function Profile() {
   };
 
   // Fonction pour supprimer son compte
+  const handleDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+  const handledeleteUser = () => {
+    dispatch(deleteUser());
+    Cookies.remove('jwtToken');
+    navigate('/');
+    toast.success('Votre compte a bien été supprimé');
+  };
   // Fonction pour se deconnecter en retirant aussi le token du cookie
   const handleDisconnect = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -74,10 +85,11 @@ function Profile() {
     Cookies.remove('jwtToken');
     console.log('déconnecté', isConnected);
     toast.success('Vous avez bien été deconnecté');
+    navigate('/');
   };
   //Fonction pour récupérer les stats:
   //  const getStats
-  // Une div qui contient le nom du user, boutons deconnecter, un bouttons pour supprimer son compte, un input pour modifier,
+
   return (
     <main id="profil_page" className="profile_container">
       <AppHeader>
@@ -147,9 +159,7 @@ function Profile() {
             >
               valider profil
             </button>
-            <button type="button" className="profile-button">
-              Supprimer le compte
-            </button>
+
             <button
               type="button"
               className="profile-button"
@@ -157,9 +167,26 @@ function Profile() {
             >
               Déconnexion
             </button>
+
+            <button
+              type="button"
+              className="profile-button"
+              onClick={handleDeleteModal}
+            >
+              Supprimer le compte
+            </button>
           </section>
         )}
       </section>
+      {isDeleteModalOpen &&
+        toast(
+          <div>
+            <h3>
+              Voulez-vous VRAIMENT supprimer cet élément ?
+              <button onClick={handledeleteUser}> Oui</button>
+            </h3>
+          </div>
+        )}
       <section>
         <span>Affichage stats</span>
       </section>

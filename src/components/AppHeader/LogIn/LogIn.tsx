@@ -39,6 +39,7 @@ function LogIn() {
         id: user?.id,
       })
     );
+    dispatch({ type: 'auth/HIDE_MODAL_LOGIN' });
   };
   const { displayModalLogIn } = useAppSelector(
     (store: RootState) => store.settings

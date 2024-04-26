@@ -46,6 +46,11 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(actions.disconnectAction, (state, action) => {
       state.isConnected = false;
     })
+    //Supression de l'utilisateur
+    .addCase(actions.deleteUser.fulfilled, (state, action) => {
+      console.log('user supprimer');
+      state.isConnected = false;
+    })
     //Si inscription réussie
     .addCase(actions.signUpAction.fulfilled, (state, action) => {
       state.isRegistered = true;

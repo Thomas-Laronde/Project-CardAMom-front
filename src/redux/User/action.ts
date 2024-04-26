@@ -56,6 +56,7 @@ export const tokenLoginAction = createAsyncThunk(
       });
       // Gérer le cas où l'authentification échoue
       if (!response.ok) {
+        Cookies.remove('jwtToken');
         throw new Error('Failed to authenticate');
       }
 
@@ -89,6 +90,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const deleteUser = createAsyncThunk('auth/DELETE', async () => {
+  const token = Cookies.get('jwtToken');
+  const response = await fetch(`http://localhost:3003/api/profile`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const profileUpdated = await response.json();
+  return profileUpdated;
+});
 // Action pour se déconnecter
 export const disconnectAction = createAction('auth/DISCONNECT');
 
@@ -117,4 +130,5 @@ export default {
   signUpAction,
   tokenLoginAction,
   updateUser,
+  deleteUser,
 };
