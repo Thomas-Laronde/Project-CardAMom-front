@@ -11,6 +11,10 @@
   box-shadow: 10px 10px 10px black;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card.flipped {
   transform: rotateY(360deg);
 }

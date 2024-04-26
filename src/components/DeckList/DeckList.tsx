@@ -47,7 +47,7 @@ function DeckList({ search }: { search: string }) {
                     <h2>{deck.title}</h2>
                   </Link>
                   <Link to={`/deckEditor/${deck.id}`} className="modif-button">
-                    <i className="fa-solid fa-pen" />
+                    <i className="fa-solid fa-pen " />
                   </Link>
                 </div>
               );

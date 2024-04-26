@@ -11,7 +11,13 @@
   border: 0px;
   width: 80px;
   height: 80px;
-  box-shadow: 3px 3px 30px #18534f;
+  box-shadow: 3px 3px 10px black;
+  transition: all 0.2s ease;
+}
+
+.buttonIcone-add:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .fa-plus-square {
@@ -30,8 +36,12 @@
 .button-modal {
   background-color: #226d68;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
 
-  border-radius: 5px;
+.button-modal:hover {
+  background-color: #1e8f87;
 }
 
 @media screen and (max-width: 1200px) {

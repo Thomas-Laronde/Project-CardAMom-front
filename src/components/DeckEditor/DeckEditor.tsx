@@ -16,6 +16,7 @@ import {
 import HomeButton from '../HomeButton/HomeButton';
 import { toast } from 'react-toastify';
 import Card from '../Card/Card';
+import { MouseEvent } from 'react';
 
 function DeckEditor() {
   const { id } = useParams();
@@ -108,7 +109,7 @@ function DeckEditor() {
     setIsModalOpen(false);
     toast.success('La carte a bien été ajoutée');
   };
-  // fonction pour supprimer une carte
+  // fonction pour supprimer une carte, elle permet de savoir si je clique sur un deck ou une carte
 
   const handleYesClick = () => {
     if (!isClickDeck) {
@@ -161,7 +162,7 @@ function DeckEditor() {
     dispatch(updateDeck({ id: deckId, title: titleDeck }));
     toast.success('Le titre a bien été modifié');
   };
-  //Fonction pour modifier une carte
+
   // Fonction qui ouvre la modale updateCard
   const handleCardUpdateModal = (index: number) => {
     setIsCardUpdateModalOpen(true);
@@ -172,6 +173,7 @@ function DeckEditor() {
   const handleCloseCardUpdateModal = () => {
     setIsCardUpdateModalOpen(false);
   };
+  //Fonction pour mettre à jour la carte côté BDD
   const handleUpdateCard = (index: number) => {
     const currentIndex = index;
     const cardId = deck?.flashcards?.[currentIndex].id;
@@ -279,21 +281,11 @@ function DeckEditor() {
           )
         )}
 
-        {isDeleteModalOpen &&
-          toast(
-            <div>
-              <h3>
-                Voulez-vous VRAIMENT supprimer cet élément ?
-                <button onClick={handleYesClick}> Oui</button>
-              </h3>
-            </div>
-          )}
-
         {!isCardUpdateModalOpen && (
           <div className="flashcards-container">
             {deck.flashcards &&
               deck.flashcards.map((card, index) => (
-                <div key={index} className="flashcard">
+                <div key={card.id} id="divCard" className="flashcard">
                   <Card recto={card.title_front} verso={card.title_back} />
                   {isSameUserId && (
                     <div className="button-card-container">
@@ -301,13 +293,13 @@ function DeckEditor() {
                         className="button-card"
                         onClick={() => handleCardDeleteModal(index)}
                       >
-                        <i className="fas fa-times cross"></i>
+                        <i className="fas fa-times cross" />
                       </button>
                       <button
                         className="button-card"
                         onClick={() => handleCardUpdateModal(index)}
                       >
-                        <i className="fa-solid fa-pen" />
+                        <i className="fa-solid fa-pen  " />
                       </button>
                     </div>
                   )}
@@ -358,6 +350,15 @@ function DeckEditor() {
         <Footer />
       </div>
 
+      {isDeleteModalOpen &&
+        toast(
+          <div>
+            <h3>
+              Voulez-vous VRAIMENT supprimer cet élément ?
+              <button onClick={handleYesClick}> Oui</button>
+            </h3>
+          </div>
+        )}
       {isSameUserId && (
         <button className="delete-button" onClick={handleDeckDelete}>
           Supprimer le deck

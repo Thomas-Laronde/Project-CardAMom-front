@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import DeckEditor from '../DeckEditor/DeckEditor';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './App.scss';
 
 function App() {
   // Récupérez le jeton JWT depuis les cookies
