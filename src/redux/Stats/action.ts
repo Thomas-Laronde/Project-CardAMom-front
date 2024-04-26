@@ -1,20 +1,49 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
-export const signUpAction = createAsyncThunk(
-  'auth/SIGNUP',
-  async (payload: LoginActionPayload) => {
-    const response = await fetch(`http://localhost:3003/api/auth/signup`, {
-      method: 'POST',
-      headers: {
-        // Je précise que j'envoie les données au format JSON
-        'Content-Type': 'application/json',
-      },
-      // J'envoie les données de la liste au format JSON
-      body: JSON.stringify(payload),
-    });
+type StatsActionPayload = {
+  nb_card_consulted: number;
+  nb_card_success: number;
+  user_id: number;
+  deck_id: number;
+  id: number | undefined;
+};
+export const fetchStats = createAsyncThunk(
+  'stats/FETCH_STATS',
+  async (payload: StatsActionPayload) => {
+    const token = Cookies.get('jwtToken');
+    const { deck_id } = payload;
+    const response = await fetch(
+      `http://localhost:3003/api/decks/${deck_id}/stats`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
 
-    const userSend = await response.json();
-
-    return userSend;
+        body: JSON.stringify(payload),
+      }
+    );
+    const statsSend = await response.json();
+    return statsSend;
   }
 );
+export const updateStats = createAsyncThunk(
+  'stats/PATCH',
+  async (payload: any) => {
+    const { token, id } = payload;
+    const response = await fetch(`http://localhost:3003/api/decks/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    });
+    const statsUpdated = await response.json();
+    return statsUpdated;
+  }
+);
+
+export default { fetchStats, updateStats };
