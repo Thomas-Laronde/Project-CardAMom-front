@@ -2,7 +2,6 @@ import './ErrorPage.scss';
 import AppHeader from '../AppHeader/AppHeader';
 import HomeButton from '../HomeButton/HomeButton';
 import Card from '../Card/Card';
-import Logo from '../../assets/HomeLogo.png';
 
 function ErrorPage() {
   return (
