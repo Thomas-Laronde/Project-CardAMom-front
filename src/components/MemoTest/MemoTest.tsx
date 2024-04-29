@@ -7,23 +7,21 @@ import './MemoTest.scss';
 import { Deck } from '../../types/index';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { fetchCard } from '../../redux/Card/action';
-import { fetchStats } from '../../redux/Stats/action';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { fetchStats, updateStats } from '../../redux/Stats/action';
 
 function MemoTest() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const token = Cookies.get('jwtToken');
   const flashcards = useAppSelector((state) => state.deck.deck?.flashcards);
-  const stats = useAppSelector((state) => state.stats);
   const [know, setKnow] = useState(false);
   const [currentCardMemo, setCurrentCardMemo] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [finalResult, setFinalResult] = useState(1);
+  const stats = useAppSelector((state) => state.stats);
   const { id } = useParams();
-
   const handleRestartSession = () => {
     setCurrentCardMemo(0);
     setIsModalOpen(false);
@@ -57,13 +55,6 @@ function MemoTest() {
   }, [id, token]);
 
   useEffect(() => {
-    if (id && token) {
-      console.log('ici: ', id);
-      dispatch(fetchStats(parseInt(id)));
-    }
-  }, [dispatch, id, token]);
-
-  useEffect(() => {
     if (
       flashcards &&
       flashcards.length > 0 &&
@@ -74,11 +65,23 @@ function MemoTest() {
   }, [currentCardMemo, flashcards]);
 
   const handleKnow = () => {
-    if (stats) {
-      const { user_id, deck_id } = stats;
-      dispatch(fetchStats({ nb_card_success: 1, deck_id, user_id }));
-    }
+    setKnow(true);
+    setCurrentCardMemo(currentCardMemo + 1);
+    dispatch(
+      updateStats({
+        deckId: parseInt(id),
+        userId: '',
+        nb_card_success: '' + 1,
+        statsId: '',
+      })
+    );
   };
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchStats({ deckId: parseInt(id) }));
+    }
+  }, [id]);
 
   const handleUnknow = () => {
     setKnow(false);
@@ -122,6 +125,7 @@ function MemoTest() {
           <button className="buttonMemo" onClick={handleKnow}>
             Aller next!
           </button>
+          <p>Nombre de cartes réussies : {stats.nb_card_success}</p>
         </div>
       </div>
       {isModalOpen &&

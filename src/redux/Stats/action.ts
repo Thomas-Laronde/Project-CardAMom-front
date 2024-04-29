@@ -4,44 +4,52 @@ import Cookies from 'js-cookie';
 type StatsActionPayload = {
   nb_card_consulted: number;
   nb_card_success: number;
-  user_id: number;
-  deck_id: number;
+  userId: number;
+  deckId: number;
   id: number | undefined;
+  statsId: number;
 };
 export const fetchStats = createAsyncThunk(
   'stats/FETCH_STATS',
   async (payload: StatsActionPayload) => {
     const token = Cookies.get('jwtToken');
-    const { deck_id } = payload;
+    const id = payload.deckId;
     const response = await fetch(
-      `http://localhost:3003/api/decks/${deck_id}/stats`,
+      `http://localhost:3003/api/decks/${id}/stats`,
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-
-        body: JSON.stringify(payload),
       }
     );
     const statsSend = await response.json();
+    console.log('ppppppp==', response);
+    console.log('les stast', statsSend);
     return statsSend;
   }
 );
 export const updateStats = createAsyncThunk(
   'stats/PATCH',
-  async (payload: any) => {
-    const { token, id } = payload;
-    const response = await fetch(`http://localhost:3003/api/decks/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    });
+  async (payload: StatsActionPayload) => {
+    const token = Cookies.get('jwtToken');
+
+    const id = payload.deckId;
+
+    const response = await fetch(
+      `http://localhost:3003/api/decks/${id}/stats`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log('aaaaaaaaa===', response);
     const statsUpdated = await response.json();
+    console.log('ssssssssss:', statsUpdated);
     return statsUpdated;
   }
 );
