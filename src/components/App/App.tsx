@@ -7,6 +7,7 @@ import { tokenLoginAction } from '../../redux/User/action';
 import Cookies from 'js-cookie';
 import { useAppDispatch } from '../../hooks/redux';
 import DeckEditor from '../DeckEditor/DeckEditor';
+import ErrorPage from '../404/ErrorPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/memoTest/:id" element={<MemoTest />} />
         <Route path="/deckEditor/:id" element={<DeckEditor />} />
         <Route path="/profil/:id" element={<Profile />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
     </div>
