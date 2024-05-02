@@ -9,11 +9,13 @@ type StatsActionPayload = {
   id: number | undefined;
   statsId: number;
 };
+
 export const fetchStats = createAsyncThunk(
   'stats/FETCH_STATS',
   async (payload: StatsActionPayload) => {
     const token = Cookies.get('jwtToken');
     const id = payload.deckId;
+
     const response = await fetch(
       `http://localhost:3003/api/decks/${id}/stats`,
       {
@@ -24,6 +26,7 @@ export const fetchStats = createAsyncThunk(
         },
       }
     );
+
     const statsSend = await response.json();
     console.log('ppppppp==', response);
     console.log('les stast', statsSend);
@@ -34,6 +37,7 @@ export const updateStats = createAsyncThunk(
   'stats/PATCH',
   async (payload: StatsActionPayload) => {
     const token = Cookies.get('jwtToken');
+    const { deckId, statsId, nb_card_success } = payload;
 
     const id = payload.deckId;
 
@@ -45,8 +49,10 @@ export const updateStats = createAsyncThunk(
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ nb_card_success }),
       }
     );
+
     console.log('aaaaaaaaa===', response);
     const statsUpdated = await response.json();
     console.log('ssssssssss:', statsUpdated);

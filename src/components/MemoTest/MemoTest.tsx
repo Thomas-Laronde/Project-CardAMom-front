@@ -27,6 +27,11 @@ function MemoTest() {
     setIsModalOpen(false);
   };
 
+  console.log('Stats fetched successfully:', stats);
+  const nbCardConsulted = stats.nb_card_consulted ?? 0;
+  const nbCardSuccess = stats.nb_card_success ?? 0;
+  console.log('ouioui = ', stats);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -79,7 +84,7 @@ function MemoTest() {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchStats({ deckId: parseInt(id) }));
+      dispatch(fetchStats({ deckId: parseInt(id), userId: '' }));
     }
   }, [id]);
 
@@ -125,7 +130,8 @@ function MemoTest() {
           <button className="buttonMemo" onClick={handleKnow}>
             Aller next!
           </button>
-          <p>Nombre de cartes réussies : {stats.nb_card_success}</p>
+          <p>Nombre de cartes consultées : {nbCardConsulted}</p>
+          <p>Nombre de cartes réussies : {nbCardSuccess}</p>
         </div>
       </div>
       {isModalOpen &&

@@ -27,6 +27,8 @@ const statsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchStats.fulfilled, (state, action) => {
       state.isPending = false;
+      console.log('Stats fetch:', action.payload);
+
       state.nb_card_consulted = action.payload.nb_card_consulted;
       state.nb_card_success = action.payload.nb_card_success;
       state.userId = action.payload.user_id;
