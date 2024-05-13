@@ -15,7 +15,7 @@ const initialState: StatsState = {
   nb_card_success: 0,
   userId: 0,
   deckId: 0,
-  id: undefined,
+  id: 0,
   isPending: false,
   error: null,
 };

@@ -27,7 +27,6 @@ function MemoTest() {
     setIsModalOpen(false);
   };
 
-  console.log('Stats fetched successfully:', stats);
   const nbCardConsulted = stats.nb_card_consulted ?? 0;
   const nbCardSuccess = stats.nb_card_success ?? 0;
   console.log('ouioui = ', stats);

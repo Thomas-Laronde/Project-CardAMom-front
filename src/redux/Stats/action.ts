@@ -49,7 +49,7 @@ export const updateStats = createAsyncThunk(
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ nb_card_success }),
+        body: JSON.stringify(payload),
       }
     );
 
