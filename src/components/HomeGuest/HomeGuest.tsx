@@ -7,7 +7,10 @@ function HomeGuest() {
     <div className="app">
       <AppHeader children />
       <h1 className="Welcome">
-        Bienvenue sur Cardamom, veuillez vous connecter
+        Bienvenue sur Cardamom, ceci est un site pour créer ses propres
+        flashcards afin de stimuler votre mémoire et améliorer vos
+        connaissances. Pour commencer l'expérience CardAMom, veuillez vous
+        connecter ou créer un compte.
       </h1>
       <Footer />
     </div>

@@ -72,7 +72,8 @@ export const deleteCard = createAsyncThunk(
 export const updateDeck = createAsyncThunk(
   'deck/PATCH',
   async (payload: any) => {
-    const { token, id } = payload;
+    const { id } = payload;
+    const token = Cookies.get('jwtToken');
     const response = await fetch(`http://localhost:3003/api/decks/${id}`, {
       method: 'PATCH',
       headers: {
